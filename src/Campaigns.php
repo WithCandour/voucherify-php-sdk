@@ -30,6 +30,18 @@ class Campaigns
     }
 
     /**
+     * @param strong $name
+     *
+     * Get campaign details.
+     *
+     * @throws \Voucherify\ClientException
+     */
+    public function get($name)
+    {
+        return $this->client->get("/campaigns/" . rawurlencode($name), null);
+    }
+
+    /**
      * @param array|stdClass $filter
      *
      * Get a filtered list of campaigns. The filter can include following properties:
