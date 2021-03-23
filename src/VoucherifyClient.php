@@ -260,6 +260,21 @@ class VoucherifyClient
     /**
      * @param array|stdClass $filter
      *
+     * Get a filtered list of campaigns. The filter can include following properties:
+     * - limit         - number (default 100)
+     * - page          - number (default 1)
+     * - campaign_type - string
+     *
+     * @throws \Voucherify\ClientException
+     */
+    public function campaigns($filter)
+    {
+        return $this->campaigns->getList($filter);
+    }
+
+    /**
+     * @param array|stdClass $filter
+     *
      * Get a filtered list of vouchers. The filter can include following properties:
      * - code_query - string
      * - limit      - number (default 10)
