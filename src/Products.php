@@ -77,6 +77,27 @@ class Products
     }
 
     /**
+     * @param array[]|stdClass[] $products Product objects
+     *
+     * Update/insert products in bulk.
+     *
+     * @throws \Voucherify\ClientException
+     */
+    public function bulkUpdate($products)
+    {
+        // in one request it is possible to update 100 records
+        $chunks = \array_chunk($products, 100);
+        $results = [];
+
+        foreach ($chunks as $chunk) {
+            $result = $this->client->post("/products/bulk", $chunk);
+            $results = \array_merge($results, $result);
+        }
+
+        return $results;
+    }
+
+    /**
      * @param string $productId
      * @param boolean|null $force
      * 
