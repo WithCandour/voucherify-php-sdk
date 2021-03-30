@@ -59,18 +59,33 @@ class Products
      * Update product.
      *
      * @throws \Voucherify\ClientException
+     * @throws \Voucherify\VoucherifyException
      */
     public function update($product)
     {
-        $productId = "";
+        $productId = null;
 
         if (is_array($product)) {
-            $productId = $product["id"];
-            unset($product["id"]);
+            if (isset($product["id"])) {
+                $productId = $product["id"];
+                unset($product["id"]);
+            }
+            elseif (isset($product["source_id"])) {
+                $productId = $product["source_id"];
+            }
         }
         elseif (is_object($product)) {
-            $productId = $product->id;
-            unset($product->id);
+            if (isset($product->id)) {
+                $productId = $product->id;
+                unset($product->id);
+            }
+            elseif (isset($product->source_id)) {
+                $productId = $product->source_id;
+            }
+        }
+
+        if (\is_null($productId)) {
+            throw new VoucherifyException("ID is missing from the product, specify either id and source_id");
         }
 
         return $this->client->put("/products/" . rawurlencode($productId), $product);
