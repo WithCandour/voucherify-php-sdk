@@ -70,10 +70,26 @@ class Customers
         $customerId = "";
 
         if (is_array($customer)) {
-            $customerId = $customer["id"];
+            if (isset($customer["id"])) {
+                $customerId = $customer["id"];
+                unset($customer["id"]);
+            }
+            elseif (isset($customer["source_id"])) {
+                $customerId = $customer["source_id"];
+            }
         }
         elseif (is_object($customer)) {
-            $customerId = $customer->id;
+            if (isset($customer->id)) {
+                $customerId = $customer->id;
+                unset($customer->id);
+            }
+            elseif (isset($customer->source_id)) {
+                $customerId = $customer->source_id;
+            }
+        }
+
+        if (\is_null($customerId)) {
+            throw new VoucherifyException("ID is missing from the customer, specify either id and source_id");
         }
 
         return $this->client->put("/customers/" . rawurlencode($customerId), $customer, null);
