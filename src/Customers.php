@@ -80,6 +80,27 @@ class Customers
     }
 
     /**
+     * @param array[]|stdClass[] $customers Customer objects
+     *
+     * Update/insert customers in bulk.
+     *
+     * @throws \Voucherify\ClientException
+     */
+    public function bulkUpdate($customers)
+    {
+        // in one request it is possible to update 100 records
+        $chunks = \array_chunk($customers, 100);
+        $results = [];
+
+        foreach ($chunks as $chunk) {
+            $result = $this->client->post("/customers/bulk", $chunk);
+            $results = \array_merge($results, $result);
+        }
+
+        return $results;
+    }
+
+    /**
      * @param string $customerId Customer ID to delete
      *
      * Delete customer.
