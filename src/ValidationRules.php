@@ -42,14 +42,17 @@ class ValidationRules
     }
 
     /**
-     * @param array|stdClass $params
+     * @param int $limit
+     * @param int $page
      *
      * List validation rules.
      *
      * @throws \Voucherify\ClientException
      */
-    public function getList($params = null)
+    public function getList($limit = 100, $page = 1)
     {
+        $params = [ "limit" => $limit, "page" => $page ];
+
         return $this->client->get("/validation-rules/", $params);
     }
 
