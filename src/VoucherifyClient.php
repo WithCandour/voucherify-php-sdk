@@ -70,6 +70,21 @@ class VoucherifyClient
     public $vouchers;
 
     /**
+     * @var \Voucherify\Rewards
+     */
+    public $rewards;
+
+    /**
+     * @var \Voucherify\RewardAssignments
+     */
+    public $rewardAssignments;
+
+    /**
+     * @var \Voucherify\Loyalties
+     */
+    public $loyalties;
+
+    /**
      * @param string $apiId
      * @param string $apiKey
      * @param string $apiVersion - Override the API version. When 'null' use default account API settings.
@@ -99,6 +114,9 @@ class VoucherifyClient
         ]);
         $this->validationRules = new ValidationRules($this->client);
         $this->vouchers = new Vouchers($this->client);
+        $this->rewards = new Rewards($this->client);
+        $this->rewardAssignments = new RewardAssignments($this->client);
+        $this->loyalties = new Loyalties($this->client);
 
         /* ********* BACKWARD COMPATIBILITY ********* */
 
