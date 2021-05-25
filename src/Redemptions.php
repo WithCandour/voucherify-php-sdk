@@ -31,7 +31,7 @@ class Redemptions
      *
      * @throws \Voucherify\ClientException
      */
-    private function redeemPromotionTier($promotionTier, $params)
+    public function redeemPromotionTier($promotionTier, $params)
     {
         $promotionTierId = "";
 
@@ -55,7 +55,7 @@ class Redemptions
      *
      * @throws \Voucherify\ClientException
      */
-    private function redeemVoucher($code, $params)
+    public function redeemVoucher($code, $params)
     {
         $payload = null;
         $options = null;

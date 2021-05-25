@@ -56,8 +56,6 @@ class PromotionTiers
         return $this->client->get("/promotions/tiers", $params);
     }
 
-     
-
     /**
      * @param string $promotionTierId
      * @param array|stdClass $params
