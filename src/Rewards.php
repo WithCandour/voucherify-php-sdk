@@ -28,4 +28,14 @@ class Rewards
     {
         return $this->client->post("/rewards/", $reward, null);
     }
+
+    /**
+     * Get a list of rewards.
+     *
+     * @throws \Voucherify\ClientException
+     */
+    public function getList()
+    {
+        return $this->client->get("/rewards");
+    }
 }
