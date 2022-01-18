@@ -19,7 +19,7 @@ class Products
 
     /**
      * @param array|stdClass $product Product object
-     * 
+     *
      * Create product.
      *
      * @throws \Voucherify\ClientException
@@ -31,7 +31,7 @@ class Products
 
     /**
      * @param string $productId
-     * 
+     *
      * Get product.
      *
      * @throws \Voucherify\ClientException
@@ -43,7 +43,7 @@ class Products
 
     /**
      * @param array|stdClass $params
-     * 
+     *
      * List products.
      *
      * @throws \Voucherify\ClientException
@@ -55,7 +55,7 @@ class Products
 
     /**
      * @param array|stdClass $product Product object
-     * 
+     *
      * Update product.
      *
      * @throws \Voucherify\ClientException
@@ -105,8 +105,8 @@ class Products
         $results = [];
 
         foreach ($chunks as $chunk) {
-            $result = $this->client->post("/products/bulk", $chunk);
-            $results = \array_merge($results, $result);
+            $result = $this->client->post("/products/bulk/async", $chunk);
+            $results = \array_merge($results, [$result]);
         }
 
         return $results;
@@ -115,7 +115,7 @@ class Products
     /**
      * @param string $productId
      * @param boolean|null $force
-     * 
+     *
      * Delete product.
      *
      * @throws \Voucherify\ClientException
@@ -131,7 +131,7 @@ class Products
     /**
      * @param string $productId
      * @param array|stdClass $sku Sku object
-     * 
+     *
      * Create product's sku.
      *
      * @throws \Voucherify\ClientException
@@ -144,7 +144,7 @@ class Products
     /**
      * @param string $productId
      * @param string $skuId
-     * 
+     *
      * Get product's sku.
      *
      * @throws \Voucherify\ClientException
@@ -156,7 +156,7 @@ class Products
 
     /**
      * @param string $productId
-     * 
+     *
      * List product's skus.
      *
      * @throws \Voucherify\ClientException
@@ -169,7 +169,7 @@ class Products
     /**
      * @param string $productId
      * @param array|stdClass $sku Product's sku object
-     * 
+     *
      * Update product's sku.
      *
      * @throws \Voucherify\ClientException
@@ -194,7 +194,7 @@ class Products
      * @param string $productId
      * @param string $skuId
      * @param boolean|null $force
-     * 
+     *
      * Delete product's sku.
      *
      * @throws \Voucherify\ClientException
