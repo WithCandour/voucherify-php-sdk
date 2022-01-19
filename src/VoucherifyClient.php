@@ -15,6 +15,11 @@ class VoucherifyClient
     private $promotionTiers;
 
     /**
+     * @var \Voucherify\AsyncActions
+     */
+    private $asyncActions;
+
+    /**
      * @var \Voucherify\Campaigns
      */
     public $campaigns;
@@ -96,6 +101,7 @@ class VoucherifyClient
         $this->promotionTiers = new PromotionTiers($this->client);
 
         // PUBLIC
+        $this->asyncActions = new AsyncActions($this->client);
         $this->campaigns = new Campaigns($this->client);
         $this->customers = new Customers($this->client);
         $this->distributions = new Distributions($this->client);
