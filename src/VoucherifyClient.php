@@ -17,7 +17,7 @@ class VoucherifyClient
     /**
      * @var \Voucherify\AsyncActions
      */
-    private $asyncActions;
+    public $asyncActions;
 
     /**
      * @var \Voucherify\Campaigns
