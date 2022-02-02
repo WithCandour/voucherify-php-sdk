@@ -179,12 +179,24 @@ class Products
         $skuId = "";
 
         if (is_array($sku)) {
-            $skuId = $sku["id"];
-            unset($sku["id"]);
+            if(!empty($sku["id"])) {
+                $skuId = $sku["id"];
+                unset($sku["id"]);
+            }
+            else {
+                $skuId = $sku["source_id"];
+                unset($sku["source_id"]);
+            }
         }
         elseif (is_object($sku)) {
-            $skuId = $sku->id;
-            unset($sku->id);
+            if(!empty($sku->id)) {
+                $skuId = $sku->id;
+                unset($sku->id);
+            }
+            else {
+                $skuId = $sku->source_id;
+                unset($sku->source_id);
+            }
         }
 
         return $this->client->put("/products/" . rawurlencode($productId) . "/skus/" . rawurlencode($skuId), $sku);
