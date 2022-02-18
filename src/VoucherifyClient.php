@@ -45,6 +45,11 @@ class VoucherifyClient
     public $products;
 
     /**
+     * @var \Voucherify\ProductCollections
+     */
+    public $productCollections;
+
+    /**
      * @var \Voucherify\Promotions
      */
     public $promotions;
@@ -107,6 +112,7 @@ class VoucherifyClient
         $this->distributions = new Distributions($this->client);
         $this->orders = new Orders($this->client);
         $this->products = new Products($this->client);
+        $this->productCollections = new ProductCollections($this->client);
         $this->promotions = new Promotions($this->client, [
             "campaigns" => $this->campaigns,
             "promotionTiers" => $this->promotionTiers
