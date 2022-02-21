@@ -31,14 +31,15 @@ class ProductCollections
 
     /**
      * @param string $collectionId
+     * @param array|stdClass $params
      *
      * List products in the collection.
      *
      * @throws \Voucherify\ClientException
      */
-    public function listProducts($collectionId)
+    public function listProducts($collectionId, $params = null)
     {
-        return $this->client->get("/product-collections/" . rawurlencode($collectionId) . "/products");
+        return $this->client->get("/product-collections/" . rawurlencode($collectionId) . "/products", $params);
     }
 
     /**
